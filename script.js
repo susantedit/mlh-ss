@@ -14,9 +14,26 @@ addEventListener('keydown',e=>{
  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{})}
 });
-let tx=null;
-addEventListener('touchstart',e=>tx=e.touches[0].clientX);
-addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(cur+(d<0?1:-1));tx=null});
+let touchStartX = null, touchStartY = null;
+window.addEventListener('touchstart', e => {
+  if (e.touches && e.touches[0]) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }
+}, { passive: true });
+
+window.addEventListener('touchend', e => {
+  if (touchStartX === null || touchStartY === null) return;
+  if (e.changedTouches && e.changedTouches[0]) {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy) * 1.1) {
+      go(cur + (dx < 0 ? 1 : -1));
+    }
+  }
+  touchStartX = null;
+  touchStartY = null;
+}, { passive: true });
 const h=parseInt(location.hash.slice(1));if(h)cur=Math.max(0,Math.min(slides.length-1,h-1));
 updateDeck();
 
