@@ -339,7 +339,11 @@ function resolveQrTarget(rawUrl) {
   if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://') || rawUrl.startsWith('mailto:')) {
     return rawUrl;
   }
-  // Convert relative file (links.html) to absolute live URL on current origin/path
+  // NEVER output 127.0.0.1 or localhost in QR codes so phones can always scan!
+  const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+  if (isLocal) {
+    return 'https://mlh.kantarajluitel.com/' + rawUrl.replace(/^\//, '');
+  }
   const base = window.location.href.split('?')[0].split('#')[0];
   return new URL(rawUrl, base).href;
 }
