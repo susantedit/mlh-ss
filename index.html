@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alliance Arena | Hacktoberfest Bhaktapur 2026</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg-canvas"></canvas><div id="progress"></div>
+<div class="presentation-container">
+
+<div class="slide active">
+ <div class="sticker m">A NEW GAMING PARADIGM ⚡</div>
+ <img src="banner.jpg" alt="Hacktoberfest Bhaktapur 2026" class="banner">
+ <h1>Alliance <em>Arena</em></h1>
+ <div class="tagline">Talk. Form Alliances. Survive.</div>
+ 
+ <div class="paradigm-card">
+  <div class="paradigm-row">
+   <div class="paradigm-item old">
+    <div class="paradigm-label">OLD GAMING PARADIGM</div>
+    <div class="paradigm-desc">Button Mashing &middot; Muscle Reflexes &middot; Scripted Tree NPCs</div>
+   </div>
+   <div class="paradigm-vs">VS</div>
+   <div class="paradigm-item new">
+    <div class="paradigm-label">ALLIANCE ARENA PARADIGM</div>
+    <div class="paradigm-desc">Words Over Reflexes &middot; Real-time AI Diplomacy &middot; Emergent Betrayal</div>
+   </div>
+  </div>
+ </div>
+ 
+ <p class="paradigm-sub" style="margin-top:10px;font-weight:700">A departure from traditional combat: your natural-language negotiations with autonomous AI agents determine whether you survive or perish.</p>
+</div>
+
+<div class="slide">
+ <div class="split">
+  <div class="txt">
+   <div class="sticker">The Idea</div>
+   <h1>What if negotiating with AI characters changed how a game plays out?</h1>
+   <div class="sub">Words over reflexes. Conversation and strategy shape the fight.</div>
+   <p style="margin-top:14px;font-weight:700">Me pitching this to the judges, fully confident:</p>
+  </div>
+  <img src="meme-pro.jpg" alt="acting professionally while I have no idea what I'm doing" class="meme tall">
+ </div>
+</div>
+
+<div class="slide">
+ <h2>The Gameplay Loop</h2>
+ <div class="flow">
+  <div class="card"><div class="step">1 / TALK</div><h3>Explore &amp; negotiate</h3><p>First-person movement, chat with NPCs, pitch alliances.</p></div><div class="arrow">→</div>
+  <div class="card"><div class="step">2 / LOCK</div><h3>Alliances lock</h3><p>Phase shifts. Your squad is set.</p></div><div class="arrow">→</div>
+  <div class="card dark"><div class="step">3 / BATTLE</div><h3>Fight to survive</h3><p>NPCs attack, defend, move, ally or betray.</p></div><div class="arrow">→</div>
+  <div class="card dark"><div class="step">4 / WINNER</div><h3>Last one standing</h3><p>Or the battle timer runs out.</p></div>
+ </div>
+ <div class="keys"><span>WASD move</span><span>Mouse look</span><span>Shift sprint</span><span>Click attack</span></div>
+ <p class="muted">Arena landmarks: Fountain · Ruins · Tower · Grove · Docks</p>
+</div>
+
+<div class="slide">
+ <h2>Meet the AI Squad</h2>
+ <div class="grid g3">
+  <div class="card nova"><div class="av">N</div><h3>Nova</h3><div class="role">Bold commander</div><p>Leads from the front and rallies others to her side.</p><div class="vibe">main character energy</div></div>
+  <div class="card rex"><div class="av">R</div><h3>Rex</h3><div class="role">Ruthless tactician</div><p>Weighs every deal by what it gains him.</p><div class="vibe">trust issues, but strategic</div></div>
+  <div class="card vera"><div class="av">V</div><h3>Vera</h3><div class="role">Polite but cunning diplomat</div><p>Courteous words, careful motives.</p><div class="vibe">sweet. suspiciously sweet.</div></div>
+ </div>
+</div>
+
+<div class="slide">
+ <div class="sticker m">The Project We Are Building</div>
+ <h2 style="margin-bottom:14px">AI advises. The browser simulates.</h2>
+ <div class="layers">
+  <div class="card"><span class="tag">FRONT END</span><h3>Three.js browser game</h3><p>HTML, CSS and JavaScript. Real-time 3D arena, first-person controls and five landmarks.</p></div>
+  <div class="card" style="border-color:var(--orange);box-shadow:6px 6px 0 var(--orange)"><span class="tag" style="background:var(--orange);color:#fff">AI MODEL USED</span><h3>Gemma 4 12B</h3><p><strong>Gemma 4 12B</strong> (cloud-hosted via Ollama / Cloudflare tunnel) generates strategic directives, personality dialogue, and tactical decisions for all NPCs.</p></div>
+  <div class="card dark"><span class="tag">LOCAL</span><h3>Local simulation</h3><p>Movement, pathfinding, collisions, combat and rules run in the browser, so it stays responsive.</p></div>
+ </div>
+ <div class="highlight-box">🤖 <strong>AI Model Used: Gemma 4 12B</strong> — Pure high-level strategic reasoning. Movement &amp; combat physics stay 100% local!</div>
+ <p class="muted">Model: Gemma 4 (12B parameters) · Fallback: Built-in local heuristic engine if cloud tunnel is offline.</p>
+</div>
+
+<div class="slide">
+ <h2>Demo Walkthrough</h2>
+ <div class="flow">
+  <div class="card"><div class="step">STEP 1</div><h3>The arena</h3><p>Walk the 3D map and its five landmarks.</p></div><div class="arrow">→</div>
+  <div class="card"><div class="step">STEP 2</div><h3>Negotiate</h3><p>Chat with an NPC and propose an alliance.</p></div><div class="arrow">→</div>
+  <div class="card dark"><div class="step">STEP 3</div><h3>Phase change</h3><p>TALK ends, alliances lock, BATTLE begins.</p></div><div class="arrow">→</div>
+  <div class="card dark"><div class="step">STEP 4</div><h3>NPC actions</h3><p>Watch them attack, defend, ally or betray.</p></div>
+ </div>
+ <div class="highlight-box" style="text-align:center">Live demo time. Let's go.</div>
+</div>
+
+<!-- Slide 7 -->
+<div class="slide">
+ <div class="meme-split">
+  <div class="txt">
+   <div><div class="sticker">Betrayal 101</div></div>
+   <h2>When the AI Says “Trust Me, Bro”</h2>
+   <div class="card" style="border-color:var(--mustard)">
+    <div class="step" style="color:var(--mustard);font-size:.95rem">NOVA (COMMANDER)</div>
+    <p style="font-size:1.15rem;font-weight:700">“Bhai, full trust hai. We take over the arena.”</p>
+   </div>
+   <div class="card dark">
+    <div class="step" style="color:var(--orange);font-size:.95rem">REX (TACTICIAN)</div>
+    <p style="font-size:1.15rem;font-weight:700">⚔️ *Joins the enemy team immediately.*</p>
+   </div>
+   <div class="card" style="border-color:var(--orange)">
+    <div class="step" style="color:var(--orange);font-size:.95rem">YOU (FIRST-PERSON PLAYER)</div>
+    <p style="font-size:1.25rem;font-weight:900;color:var(--orange)">“Aree bhai bhai bhai! 💀”</p>
+   </div>
+  </div>
+  <div class="meme-frame">
+   <img src="1.png" alt="Trust me bro" class="meme-img">
+  </div>
+ </div>
+</div>
+
+<!-- Slide 8 -->
+<div class="slide">
+ <div class="meme-split">
+  <div class="txt">
+   <div><div class="sticker m">Classic Dev Moment</div></div>
+   <h2>Developer During the Live Demo</h2>
+   <div class="caption">“Mere laptop pe toh chal raha tha!” 😭</div>
+   <div class="card" style="border-color:#059669">
+    <div class="step" style="color:#059669;font-size:.9rem">CONFIDENCE BEFORE DEMO (100%)</div>
+    <p style="font-size:1.05rem;line-height:1.4">Fully confident: 3D arena running, Gemma 4 12B thinking, victory in sight.</p>
+   </div>
+   <div class="card dark" style="border-color:var(--orange)">
+    <div class="step" style="color:var(--mustard);font-size:.9rem">PANIC DURING LIVE DEMO</div>
+    <p style="font-size:1.05rem;line-height:1.4">Rex attacks walls, connection drops, audience watching silently.</p>
+   </div>
+  </div>
+  <div class="meme-frame">
+   <img src="2.png" alt="Developer during live demo" class="meme-img">
+  </div>
+ </div>
+</div>
+
+<!-- Slide 9 -->
+<div class="slide">
+ <div class="meme-split">
+  <div class="txt">
+   <div><div class="sticker">POV Moment</div></div>
+   <h2>POV: You Asked an NPC for an Alliance</h2>
+   <div class="card">
+    <div class="step" style="font-size:.95rem">THE PROPOSAL</div>
+    <p style="font-size:1.15rem"><strong>You:</strong> “Bhai, team bana le.”</p>
+   </div>
+   <div class="card dark">
+    <div class="step" style="color:var(--mustard);font-size:.95rem">THE NPC REALITY</div>
+    <p style="font-size:1.15rem"><strong>NPC:</strong> “Pehle apni aukaat dikha.”</p>
+   </div>
+   <div class="card" style="border-color:var(--orange)">
+    <div class="step" style="color:var(--orange);font-size:.95rem">AFTER BETRAYAL</div>
+    <p style="font-size:1.2rem;font-weight:900;color:var(--orange)"><strong>You:</strong> “Badla lunga!” 💀</p>
+   </div>
+  </div>
+  <div class="meme-frame">
+   <img src="3.png" alt="POV: Asked NPC for alliance" class="meme-img">
+  </div>
+ </div>
+</div>
+
+<!-- Slide 10 -->
+<div class="slide">
+ <div><div class="sticker m">Audience Vote</div></div>
+ <h2>Who Would You Trust?</h2>
+ <div class="sub" style="margin-bottom:12px">Vote for the character you trust most before gameplay:</div>
+ <div class="grid g3" style="margin-bottom:12px;width:100%;max-width:960px">
+  <div class="card nova">
+   <div class="av">N</div>
+   <h3>Nova</h3>
+   <div class="role">Commander</div>
+   <p style="font-size:.95rem">“Honor and strength.”</p>
+   <div class="vibe">Trustworthy or bait?</div>
+  </div>
+  <div class="card rex">
+   <div class="av">R</div>
+   <h3>Rex</h3>
+   <div class="role">Tactician</div>
+   <p style="font-size:.95rem">“Power is everything.”</p>
+   <div class="vibe">Will switch sides in battle</div>
+  </div>
+  <div class="card vera">
+   <div class="av">V</div>
+   <h3>Vera</h3>
+   <div class="role">Diplomat</div>
+   <p style="font-size:.95rem">“Let's negotiate.”</p>
+   <div class="vibe">Polite with hidden daggers</div>
+  </div>
+ </div>
+ <div class="meme-frame" style="margin:4px 0 10px">
+  <img src="4.png" alt="Who would you trust" class="meme-img" style="max-height:min(30vh,220px)">
+ </div>
+ <div class="highlight-box" style="margin-top:0;text-align:center;width:100%;max-width:860px">🎭 Betrayal twist revealed live during the gameplay demo!</div>
+</div>
+
+<div class="slide">
+ <div class="sticker m">Plot Twist</div>
+ <div class="caption">After I built it and started <b>playing</b> the game...</div>
+ <div class="memewrap"><img src="meme-study.jpg" alt="We studied enough, let's play some games" class="meme tall"></div>
+</div>
+
+<div class="slide">
+ <h2>Dev Jokes (Nepali / Hindi / English edition)</h2>
+ <div class="jokes">
+  <div class="card"><div class="lang">HINDI-ENGLISH</div><h3>Bug hai ya feature?</h3><p>Rex betrayed me mid-battle. Ekdam feature, bro. Totally intended.</p></div>
+  <div class="card"><div class="lang">NEPALI-ENGLISH</div><h3>Ke garne ta?</h3><p>Works on my machine. Demo ma chalena. Aba ta bhayo.</p></div>
+  <div class="card"><div class="lang">CID MODE</div><h3>Daya, kuch toh gadbad hai</h3><p>Vera said "of course we are allies". Daya, darwaza tod do.</p></div>
+  <div class="card"><div class="lang">NEPALI</div><h3>Wah bate wah</h3><p>Nova made me join her alliance, then I got hit first. Wah bate wah.</p></div>
+ </div>
+</div>
+
+<div class="slide">
+ <div class="sticker">Takeaway</div>
+ <div class="quote-text">A prototype exploring how natural-language interaction can influence game strategy.</div>
+ <div class="highlight-box" style="margin-top:26px">Alliance Arena: talk, form alliances, survive.</div>
+ <img src="banner.jpg" alt="Hacktoberfest Bhaktapur 2026" class="banner sm">
+</div>
+
+<div class="slide">
+ <div class="big-q">Do you have any questions?</div>
+ <div class="sub" style="margin-bottom:14px">Dhanyabad &middot; Shukriya &middot; Thank you</div>
+ <div class="memewrap"><img src="meme-end.jpg" alt="End of presentation, please don't ask difficult questions" class="meme wide"></div>
+</div>
+
+<div class="slide">
+ <div class="sticker m">THE VERDICT ⚖️</div>
+ <div class="big-q" style="font-size:clamp(1.8rem,4.2vw,3.2rem);margin-bottom:6px">Am I going to win? 🏆</div>
+ <div class="sub" style="margin-bottom:12px;font-size:1.15rem">Select who is voting:</div>
+ <div class="win-box">
+  <div class="win-btns">
+   <button type="button" class="win-btn judge-yes active" id="btn-judge-yes">JUDGE: YES 🥇</button>
+   <button type="button" class="win-btn judge-no" id="btn-judge-no">JUDGE: NO 😭</button>
+   <button type="button" class="win-btn aud-yes" id="btn-aud-yes">AUDIENCE: YES 😎</button>
+   <button type="button" class="win-btn aud-no" id="btn-aud-no">AUDIENCE: NO 🤫</button>
+  </div>
+  <!-- 1. Judge YES: image.png -->
+  <div id="res-judge-yes" class="win-display">
+   <img src="image.png" alt="Judge says YES" class="win-img">
+   <div class="highlight-box" style="margin-top:10px;text-align:center">🎉 Respect to the judges! 1st place champion energy locked in. Dhanyabad!</div>
+  </div>
+  <!-- 2. Judge NO: Video-52417.mp4 -->
+  <div id="res-judge-no" class="win-display" style="display:none">
+   <div class="caption" style="font-size:1.2rem;margin-bottom:8px;color:var(--orange)">Judges said NO: Moye Moye moment 💀</div>
+   <video id="vid-judge-no" src="Video-52417.mp4" controls playsinline class="win-video" preload="auto"></video>
+   <div class="sub" style="margin-top:6px;font-size:1.05rem;color:var(--teal)">Press play to witness the defeat...</div>
+  </div>
+  <!-- 3. Audience YES: image.png -->
+  <div id="res-aud-yes" class="win-display" style="display:none">
+   <img src="image.png" alt="Audience says YES" class="win-img">
+   <div class="highlight-box" style="margin-top:10px;text-align:center">🎉 Audience says YES! Main character energy. Full support unlocked!</div>
+  </div>
+  <!-- 4. Audience NO: wm_Chup_Kar_Be_Kutte_Meme_Download.mp4 -->
+  <div id="res-aud-no" class="win-display" style="display:none">
+   <div class="caption" style="font-size:1.2rem;margin-bottom:8px;color:var(--orange)">For the audience saying NO... special reply for you:</div>
+   <video id="vid-aud-no" src="wm_Chup_Kar_Be_Kutte_Meme_Download.mp4" controls playsinline class="win-video" preload="auto"></video>
+   <div class="sub" style="margin-top:6px;font-size:1.05rem;color:var(--teal)">🤫 “Chup Kar…” — Play video!</div>
+  </div>
+ </div>
+</div>
+
+<div class="slide">
+ <div class="sticker m">FINAL PITCH &middot; OPPORTUNITY 💼</div>
+ <h2 style="margin-bottom:6px">My team doesn't want an internship... <em>BUT I DO!</em> 🔥</h2>
+ <div class="sub" style="margin-bottom:12px;font-size:1.15rem">Full-Stack &amp; AI Builder &middot; Ready for Internship &amp; Engineering Roles</div>
+ 
+ <div class="intern-split">
+  <div class="intern-left">
+   <div class="photo-pair">
+    <div class="photo-box">
+     <img src="hero_center.png" alt="Susant Luitel" class="hero-img">
+     <div class="photo-tag">Susant Luitel 🇳🇵</div>
+    </div>
+    <div class="photo-box">
+     <img src="6.png" alt="Meme: Ready for internship" class="meme-small">
+     <div class="photo-tag">The Internship Hustle 🚀</div>
+    </div>
+   </div>
+   <div class="highlight-box" style="margin-top:10px;font-size:0.92rem;padding:9px 14px">
+    💡 "While the squad takes a break, I am ready to join your engineering team, build LLM pipelines, and ship production code!"
+   </div>
+  </div>
+
+  <div class="intern-right">
+   <div class="qr-container">
+    <div class="qr-label">📱 SCAN TO CONNECT / HIRE ME</div>
+    <div class="qr-tabs">
+     <button type="button" class="qr-tab active" data-url="links.html" data-title="All Social Media &amp; Profiles Hub">🌟 ALL MEDIAS</button>
+     <button type="button" class="qr-tab" data-url="https://linkedin.com/in/kantaraj-luitel" data-title="LinkedIn Profile">LinkedIn</button>
+     <button type="button" class="qr-tab" data-url="https://github.com/susantedit" data-title="GitHub Profile">GitHub</button>
+     <button type="button" class="qr-tab" data-url="https://wa.me/9779708838261" data-title="WhatsApp Chat">WhatsApp</button>
+     <button type="button" class="qr-tab" data-url="mailto:susantedit@gmail.com" data-title="Direct Email">Email</button>
+    </div>
+    <div class="qr-frame">
+     <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=links.html&margin=4" alt="QR Code" class="qr-img">
+     <div id="qr-desc" class="qr-desc">Scanning opens: <b>All Social Media &amp; Profiles Hub</b></div>
+     <a href="links.html" target="_blank" style="margin-top:6px;font-size:0.8rem;padding:5px 12px;background:var(--teal);color:var(--cream);border:2px solid var(--ink);border-radius:6px;text-decoration:none;font-weight:800;display:inline-block">🔗 Open All Media Hub Directly</a>
+    </div>
+   </div>
+
+   <div class="badges-wrap">
+    <div class="badges-title">Tap to open any platform:</div>
+    <div class="badges-grid">
+     <a href="https://linkedin.com/in/kantaraj-luitel" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+     <a href="https://github.com/susantedit" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/GitHub-181717.svg?logo=github&logoColor=white" alt="GitHub"></a>
+     <a href="https://wa.me/9779708838261" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/WhatsApp-25D366?logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
+     <a href="mailto:susantedit@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white" alt="Email"></a>
+     <a href="https://x.com/Susantedit" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/X-black.svg?logo=X&logoColor=white" alt="X"></a>
+     <a href="https://facebook.com/Kantaraj.Luitel" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white" alt="Facebook"></a>
+     <a href="https://instagram.com/susantgamerz" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white" alt="Instagram"></a>
+     <a href="https://tiktok.com/@vortexeditz34" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/TikTok-%23000000.svg?logo=TikTok&logoColor=white" alt="TikTok"></a>
+     <a href="https://codepen.io/susant-gamerz" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Codepen-000000?logo=codepen&logoColor=white" alt="Codepen"></a>
+     <a href="https://reddit.com/user/Successful-Twist2608" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Reddit-%23FF4500.svg?logo=Reddit&logoColor=white" alt="Reddit"></a>
+     <a href="https://pinterest.com/susantluitel" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Pinterest-%23E60023.svg?logo=Pinterest&logoColor=white" alt="Pinterest"></a>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+
+</div>
+<audio id="bg-music" loop preload="auto">
+  <source src="Mozart - Eine kleine Nachtmusik - Classical Corner Music.mp3" type="audio/mpeg">
+  <source src="bg-music.mp3" type="audio/mpeg">
+</audio>
+<div class="hint">← → / Space to navigate · F for fullscreen</div>
+<div class="controls">
+ <button class="nav-btn music-btn" id="music-btn" title="Toggle background music">🎵</button>
+ <button class="nav-btn" id="prev-btn">←</button>
+ <div class="slide-number" id="slide-num">1 / 6</div>
+ <button class="nav-btn" id="next-btn">→</button>
+</div>
+<script src="script.js"></script>
+</body></html>
