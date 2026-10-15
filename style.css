@@ -483,25 +483,105 @@ p{font-size:clamp(1rem,1.7vw,1.25rem);line-height:1.5;max-width:850px;margin-bot
   border-radius: 10px;
   font-size: 0.78rem;
 }
+.vote-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 880px;
+  margin: 4px auto 0;
+}
 .vote-meme-frame {
-  margin: 4px auto 10px;
+  margin: 0;
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 .vote-img {
-  max-height: min(24vh, 180px);
+  max-height: 120px;
   width: auto;
   border: 3px solid var(--ink);
   border-radius: 12px;
-  box-shadow: 5px 5px 0 var(--mustard);
+  box-shadow: 4px 4px 0 var(--mustard);
+  object-fit: contain;
 }
 .vote-box {
-  margin-top: 0;
-  text-align: center;
-  width: 100%;
-  max-width: 820px;
+  margin: 0;
+  flex: 1;
+  text-align: left;
   font-size: 0.95rem;
-  padding: 8px 16px;
+  line-height: 1.4;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Slide 10: PC Responsive scaling for standard/shorter laptops & high DPI displays */
+@media (max-height: 720px) and (min-width: 769px) {
+  .slide-vote {
+    padding: 12px 20px !important;
+    justify-content: center !important;
+  }
+  .slide-vote .sticker {
+    font-size: 0.8rem !important;
+    padding: 4px 10px !important;
+    margin-bottom: 6px !important;
+  }
+  .slide-vote h2 {
+    font-size: 1.6rem !important;
+    margin-bottom: 6px !important;
+    padding-bottom: 6px !important;
+  }
+  .slide-vote h2::after {
+    height: 4px !important;
+    width: 80px !important;
+  }
+  .vote-sub {
+    font-size: 0.92rem !important;
+    margin-bottom: 6px !important;
+  }
+  .vote-grid {
+    gap: 10px !important;
+    margin: 2px auto 6px !important;
+  }
+  .vote-card {
+    padding: 8px 10px !important;
+  }
+  .vote-card .av {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 3px !important;
+  }
+  .vote-card h3 {
+    font-size: 1rem !important;
+    margin-bottom: 2px !important;
+  }
+  .vote-card .role {
+    font-size: 0.78rem !important;
+    margin-bottom: 2px !important;
+  }
+  .vote-card .quote {
+    font-size: 0.78rem !important;
+    margin-bottom: 5px !important;
+  }
+  .vote-action-btn {
+    font-size: 0.75rem !important;
+    padding: 3px 8px !important;
+  }
+  .vote-bottom-row {
+    margin-top: 4px !important;
+    gap: 12px !important;
+  }
+  .vote-img {
+    max-height: 85px !important;
+  }
+  .vote-box {
+    font-size: 0.82rem !important;
+    padding: 6px 12px !important;
+  }
 }
 
 /* Slide 10 on Mobile & Small Screens */
@@ -558,14 +638,25 @@ p{font-size:clamp(1rem,1.7vw,1.25rem);line-height:1.5;max-width:850px;margin-bot
     padding: 0 4px !important;
     font-size: 0.65rem !important;
   }
+  .vote-bottom-row {
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-top: 4px !important;
+    width: 100% !important;
+  }
+  .vote-meme-frame {
+    margin: 0 auto !important;
+  }
   .vote-img {
-    max-height: 115px !important;
+    max-height: 110px !important;
     border-width: 2px !important;
   }
   .vote-box {
+    text-align: center !important;
     font-size: 0.75rem !important;
     padding: 5px 8px !important;
     border-width: 2px !important;
+    justify-content: center !important;
   }
   .banter-box {
     margin-top: 8px;
