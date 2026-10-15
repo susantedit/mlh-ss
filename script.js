@@ -339,11 +339,12 @@ function resolveQrTarget(rawUrl) {
   if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://') || rawUrl.startsWith('mailto:')) {
     return rawUrl;
   }
-  // NEVER output 127.0.0.1 or localhost in QR codes so phones can always scan!
+  // If running locally, point QR codes to the public GitHub Pages site so phones can scan
   const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
   if (isLocal) {
-    return 'https://mlh.kantarajluitel.com/' + rawUrl.replace(/^\//, '');
+    return 'https://susantedit.github.io/mlh-ss/' + rawUrl.replace(/^\//, '');
   }
+  // Otherwise resolve relative to wherever this page is currently hosted
   const base = window.location.href.split('?')[0].split('#')[0];
   return new URL(rawUrl, base).href;
 }
