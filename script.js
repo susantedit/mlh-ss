@@ -1,4 +1,4 @@
-const slides=document.querySelectorAll('.slide'),slideNum=document.getElementById('slide-num'),bar=document.getElementById('progress');
+﻿const slides=document.querySelectorAll('.slide'),slideNum=document.getElementById('slide-num'),bar=document.getElementById('progress');
 let cur=0;
 function updateDeck(){slides.forEach((s,i)=>s.classList.toggle('active',i===cur));slideNum.textContent=`${cur+1} / ${slides.length}`;bar.style.width=((cur+1)/slides.length*100)+'%';if(location.hash!=='#'+(cur+1))history.replaceState(null,'','#'+(cur+1))}
 function go(n){
@@ -288,6 +288,8 @@ if (bgMusic) {
 });
 
 function showVerdict(activeBtn, activeRes, playVid) {
+  const winPlaceholder = document.getElementById('win-placeholder');
+  if (winPlaceholder) winPlaceholder.style.display = 'none';
   [btnJudgeYes, btnJudgeNo, btnAudYes, btnAudNo].forEach(b => b && b.classList.remove('active'));
   [resJudgeYes, resJudgeNo, resAudYes, resAudNo].forEach(r => { if (r) r.style.display = 'none'; });
 
