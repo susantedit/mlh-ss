@@ -1,14 +1,29 @@
-﻿const slides=document.querySelectorAll('.slide'),slideNum=document.getElementById('slide-num'),bar=document.getElementById('progress');
+const slides=document.querySelectorAll('.slide'),slideNum=document.getElementById('slide-num'),bar=document.getElementById('progress');
 let cur=0;
+let isZoomOpen = false;
 function updateDeck(){slides.forEach((s,i)=>s.classList.toggle('active',i===cur));slideNum.textContent=`${cur+1} / ${slides.length}`;bar.style.width=((cur+1)/slides.length*100)+'%';if(location.hash!=='#'+(cur+1))history.replaceState(null,'','#'+(cur+1))}
 function go(n){
   stopVideos();
   cur=Math.max(0,Math.min(slides.length-1,n));
   updateDeck();
 }
-document.getElementById('next-btn').onclick=()=>go(cur+1);
-document.getElementById('prev-btn').onclick=()=>go(cur-1);
+const nextBtn = document.getElementById('next-btn');
+if (nextBtn) nextBtn.onclick = () => go(cur + 1);
+const prevBtn = document.getElementById('prev-btn');
+if (prevBtn) prevBtn.onclick = () => go(cur - 1);
 addEventListener('keydown',e=>{
+ if (isZoomOpen) {
+   if (e.key === 'Escape') {
+     if (typeof closeZoom === 'function') closeZoom();
+   } else if (e.key === '+' || e.key === '=') {
+     if (typeof zoomIn === 'function') zoomIn();
+   } else if (e.key === '-' || e.key === '_') {
+     if (typeof zoomOut === 'function') zoomOut();
+   } else if (e.key === '0') {
+     if (typeof resetZoom === 'function') resetZoom();
+   }
+   return;
+ }
  if(['ArrowRight',' ','PageDown'].includes(e.key)){e.preventDefault();go(cur+1)}
  else if(['ArrowLeft','PageUp'].includes(e.key))go(cur-1);
  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
@@ -16,6 +31,7 @@ addEventListener('keydown',e=>{
 });
 let touchStartX = null, touchStartY = null;
 window.addEventListener('touchstart', e => {
+  if (isZoomOpen) return;
   if (e.touches && e.touches[0]) {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
@@ -23,6 +39,7 @@ window.addEventListener('touchstart', e => {
 }, { passive: true });
 
 window.addEventListener('touchend', e => {
+  if (isZoomOpen) return;
   if (touchStartX === null || touchStartY === null) return;
   if (e.changedTouches && e.changedTouches[0]) {
     const dx = e.changedTouches[0].clientX - touchStartX;
@@ -274,11 +291,11 @@ if (bgMusic) {
         if ((!vidJudge || vidJudge.paused) && (!vidAud || vidAud.paused)) {
           bgMusic.play().catch(() => {});
         }
-        musicBtn.textContent = '🎵';
+        musicBtn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" width="20" height="20"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>';
         musicBtn.classList.remove('muted');
       } else {
         bgMusic.pause();
-        musicBtn.textContent = '🔇';
+        musicBtn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" width="20" height="20"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
         musicBtn.classList.add('muted');
       }
     };
@@ -367,4 +384,292 @@ if (qrTabs && qrImg) {
   });
   const initialTab = document.querySelector('.qr-tab.active') || qrTabs[0];
   if (initialTab) updateQrDisplay(initialTab);
+}
+
+/* ============================================================
+   Universal Photo Zoom & Pan Engine (Mobile & Desktop)
+   ============================================================ */
+let currentZoom = 1.0;
+const MIN_ZOOM = 1.0;
+const MAX_ZOOM = 4.5;
+let panX = 0, panY = 0;
+let isPanning = false;
+let startPointerX = 0, startPointerY = 0;
+let initialPanX = 0, initialPanY = 0;
+let initialPinchDistance = 0;
+let initialPinchZoom = 1.0;
+let lastTapTime = 0;
+
+const zoomModal = document.getElementById('photo-zoom-modal');
+const zoomBackdrop = document.getElementById('zoom-backdrop');
+const zoomStage = document.getElementById('zoom-stage');
+const zoomImg = document.getElementById('zoom-img');
+const zoomTitle = document.getElementById('zoom-title');
+const zoomLevelText = document.getElementById('zoom-level');
+const zoomInBtn = document.getElementById('zoom-in-btn');
+const zoomOutBtn = document.getElementById('zoom-out-btn');
+const zoomResetBtn = document.getElementById('zoom-reset-btn');
+const zoomCloseBtn = document.getElementById('zoom-close-btn');
+
+function applyTransform(withTransition = false) {
+  if (!zoomImg) return;
+  zoomImg.style.transition = withTransition ? 'transform 0.22s cubic-bezier(0.2, 0, 0.2, 1)' : 'none';
+  zoomImg.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${currentZoom})`;
+  if (zoomLevelText) {
+    zoomLevelText.textContent = `${Math.round(currentZoom * 100)}%`;
+  }
+  if (zoomStage) {
+    if (currentZoom > 1.01) {
+      zoomStage.classList.toggle('is-dragging', isPanning);
+      zoomStage.style.cursor = isPanning ? 'grabbing' : 'grab';
+    } else {
+      zoomStage.classList.remove('is-dragging');
+      zoomStage.style.cursor = 'default';
+    }
+  }
+}
+
+function clampPan() {
+  if (!zoomImg || !zoomStage) return;
+  if (currentZoom <= 1.0) {
+    panX = 0;
+    panY = 0;
+    return;
+  }
+  const rect = zoomImg.getBoundingClientRect();
+  const stageWidth = zoomStage.clientWidth;
+  const stageHeight = zoomStage.clientHeight;
+  const maxPanX = Math.max(0, (rect.width - stageWidth) / 2 + 80);
+  const maxPanY = Math.max(0, (rect.height - stageHeight) / 2 + 80);
+  panX = Math.max(-maxPanX, Math.min(maxPanX, panX));
+  panY = Math.max(-maxPanY, Math.min(maxPanY, panY));
+}
+
+function setZoom(newZoom, resetPan = false, withTransition = true) {
+  const clamped = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
+  currentZoom = clamped;
+  if (resetPan || currentZoom <= 1.0) {
+    panX = 0;
+    panY = 0;
+  } else {
+    clampPan();
+  }
+  applyTransform(withTransition);
+}
+
+function zoomIn() {
+  setZoom(currentZoom + (currentZoom < 2.0 ? 0.35 : 0.5), false, true);
+}
+
+function zoomOut() {
+  setZoom(currentZoom - (currentZoom <= 2.0 ? 0.35 : 0.5), false, true);
+}
+
+function resetZoom() {
+  setZoom(1.0, true, true);
+}
+
+function openZoom(imgElement) {
+  if (!zoomModal || !zoomImg || !imgElement) return;
+  const src = imgElement.currentSrc || imgElement.src;
+  if (!src) return;
+
+  const alt = imgElement.alt || imgElement.title || 'Photo View';
+  zoomImg.src = src;
+  zoomImg.alt = alt;
+  if (zoomTitle) zoomTitle.textContent = alt.length > 36 ? alt.substring(0, 36) + '...' : alt;
+
+  currentZoom = 1.0;
+  panX = 0;
+  panY = 0;
+  applyTransform(false);
+
+  zoomModal.style.display = 'flex';
+  requestAnimationFrame(() => {
+    zoomModal.classList.add('active');
+    zoomModal.setAttribute('aria-hidden', 'false');
+  });
+
+  isZoomOpen = true;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeZoom() {
+  if (!zoomModal || !isZoomOpen) return;
+  zoomModal.classList.remove('active');
+  zoomModal.setAttribute('aria-hidden', 'true');
+  setTimeout(() => {
+    if (!zoomModal.classList.contains('active')) {
+      zoomModal.style.display = 'none';
+      if (zoomImg) zoomImg.src = '';
+    }
+  }, 250);
+  isZoomOpen = false;
+  document.body.style.overflow = '';
+}
+
+// Button events
+if (zoomInBtn) zoomInBtn.onclick = (e) => { e.stopPropagation(); zoomIn(); };
+if (zoomOutBtn) zoomOutBtn.onclick = (e) => { e.stopPropagation(); zoomOut(); };
+if (zoomResetBtn) zoomResetBtn.onclick = (e) => { e.stopPropagation(); resetZoom(); };
+if (zoomCloseBtn) zoomCloseBtn.onclick = (e) => { e.stopPropagation(); closeZoom(); };
+if (zoomBackdrop) zoomBackdrop.onclick = () => closeZoom();
+
+// Mouse Wheel Zoom on stage
+if (zoomStage) {
+  zoomStage.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const delta = e.deltaY < 0 ? 0.25 : -0.25;
+    setZoom(currentZoom + delta, false, false);
+  }, { passive: false });
+
+  // Mouse drag panning
+  zoomStage.addEventListener('mousedown', (e) => {
+    if (e.target === zoomBackdrop) return;
+    if (currentZoom <= 1.0) return;
+    isPanning = true;
+    startPointerX = e.clientX;
+    startPointerY = e.clientY;
+    initialPanX = panX;
+    initialPanY = panY;
+    zoomStage.classList.add('is-dragging');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isPanning || !isZoomOpen) return;
+    const dx = e.clientX - startPointerX;
+    const dy = e.clientY - startPointerY;
+    panX = initialPanX + dx;
+    panY = initialPanY + dy;
+    clampPan();
+    applyTransform(false);
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isPanning) {
+      isPanning = false;
+      if (zoomStage) zoomStage.classList.remove('is-dragging');
+    }
+  });
+
+  // Touch Interactions: Pinch-to-zoom & 1-finger Pan & Double-tap
+  zoomStage.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      isPanning = false;
+      const x1 = e.touches[0].clientX, y1 = e.touches[0].clientY;
+      const x2 = e.touches[1].clientX, y2 = e.touches[1].clientY;
+      initialPinchDistance = Math.hypot(x2 - x1, y2 - y1);
+      initialPinchZoom = currentZoom;
+    } else if (e.touches.length === 1) {
+      const now = Date.now();
+      if (now - lastTapTime < 300) {
+        // Double tap toggles zoom
+        if (currentZoom > 1.2) {
+          resetZoom();
+        } else {
+          setZoom(2.2, false, true);
+        }
+        lastTapTime = 0;
+        return;
+      }
+      lastTapTime = now;
+
+      if (currentZoom > 1.01) {
+        isPanning = true;
+        startPointerX = e.touches[0].clientX;
+        startPointerY = e.touches[0].clientY;
+        initialPanX = panX;
+        initialPanY = panY;
+      }
+    }
+  }, { passive: false });
+
+  zoomStage.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2 && initialPinchDistance > 0) {
+      e.preventDefault();
+      const x1 = e.touches[0].clientX, y1 = e.touches[0].clientY;
+      const x2 = e.touches[1].clientX, y2 = e.touches[1].clientY;
+      const dist = Math.hypot(x2 - x1, y2 - y1);
+      const factor = dist / initialPinchDistance;
+      setZoom(initialPinchZoom * factor, false, false);
+    } else if (e.touches.length === 1 && isPanning) {
+      e.preventDefault();
+      const dx = e.touches[0].clientX - startPointerX;
+      const dy = e.touches[0].clientY - startPointerY;
+      panX = initialPanX + dx;
+      panY = initialPanY + dy;
+      clampPan();
+      applyTransform(false);
+    }
+  }, { passive: false });
+
+  zoomStage.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) {
+      initialPinchDistance = 0;
+    }
+    if (e.touches.length === 0) {
+      isPanning = false;
+    }
+  }, { passive: true });
+}
+
+// Attach Zoom Trigger & Badges to All Slide Images
+function initPhotoZoomables() {
+  const candidateImages = document.querySelectorAll('.slide img:not(.badges-grid img)');
+
+  candidateImages.forEach(img => {
+    if (img.dataset.zoomEnabled) return;
+    img.dataset.zoomEnabled = 'true';
+    img.classList.add('zoomable-photo');
+    img.title = img.title ? img.title + ' (Tap to zoom in)' : 'Tap to zoom in / out';
+
+    // Click on photo directly opens zoom
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openZoom(img);
+    });
+
+    // Ensure parent allows badge positioning or wrap image
+    const parent = img.parentElement;
+    let badgeContainer = parent;
+
+    const hasRelativeParent = parent && (
+      parent.classList.contains('meme-frame') ||
+      parent.classList.contains('memewrap') ||
+      parent.classList.contains('photo-box') ||
+      parent.classList.contains('qr-frame') ||
+      parent.classList.contains('photo-zoom-wrap')
+    );
+
+    if (!hasRelativeParent) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'photo-zoom-wrap';
+      parent.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
+      badgeContainer = wrapper;
+    } else {
+      parent.style.position = 'relative';
+    }
+
+    // Add visible Zoom badge button on the photo
+    const badge = document.createElement('button');
+    badge.type = 'button';
+    badge.className = 'photo-zoom-badge';
+    badge.innerHTML = '<svg class="icon" viewBox="0 0 24 24" width="13" height="13"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Zoom';
+    badge.title = 'Tap to zoom in/out';
+    badge.setAttribute('aria-label', 'Zoom this photo');
+    badge.onclick = (e) => {
+      e.stopPropagation();
+      openZoom(img);
+    };
+
+    badgeContainer.appendChild(badge);
+  });
+}
+
+// Initialize on DOM load and when slides update
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPhotoZoomables);
+} else {
+  initPhotoZoomables();
 }

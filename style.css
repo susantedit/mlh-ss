@@ -1,5 +1,7 @@
-﻿:root{--teal:#123f3b;--teal2:#0c2c29;--orange:#e2582d;--mustard:#e8b93c;--cream:#f7ebd3;--ink:#13201f;--card:#fff8e8}
+:root{--teal:#123f3b;--teal2:#0c2c29;--orange:#e2582d;--mustard:#e8b93c;--cream:#f7ebd3;--ink:#13201f;--card:#fff8e8}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Trebuchet MS','Segoe UI',Tahoma,sans-serif}
+.icon{display:inline-block;vertical-align:-0.15em;width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.icon-solid{fill:currentColor;stroke:none}
 html,body{height:100%}
 body{background:var(--teal);color:var(--ink);overflow:hidden;height:100vh;width:100vw;position:relative;background-image:linear-gradient(rgba(232,185,60,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(232,185,60,.07) 1px,transparent 1px);background-size:46px 46px}
 #bg-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
@@ -321,4 +323,274 @@ p{font-size:clamp(1rem,1.7vw,1.25rem);line-height:1.5;max-width:850px;margin-bot
   .meme-img { max-height: 190px !important; }
   .win-video, .win-img { max-height: 190px !important; }
   .hint { display: none !important; }
+}
+
+/* Photo Zoom Feature Styles */
+.photo-zoom-wrap {
+  position: relative !important;
+  display: inline-flex !important;
+  max-width: 100% !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.zoomable-photo {
+  cursor: zoom-in !important;
+  transition: transform 0.2s ease, filter 0.2s ease !important;
+  touch-action: manipulation !important;
+}
+
+.zoomable-photo:hover {
+  filter: brightness(1.04) !important;
+}
+
+.photo-zoom-badge {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  background: var(--mustard) !important;
+  color: var(--ink) !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: 0.78rem !important;
+  font-weight: 900 !important;
+  padding: 4px 10px !important;
+  border: 2px solid var(--ink) !important;
+  border-radius: 8px !important;
+  box-shadow: 2px 2px 0 var(--ink) !important;
+  cursor: pointer !important;
+  z-index: 25 !important;
+  pointer-events: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  transition: transform 0.15s ease, background 0.15s ease !important;
+}
+
+.photo-zoom-badge:hover,
+.photo-zoom-badge:active {
+  transform: scale(1.08) !important;
+  background: var(--orange) !important;
+  color: #fff !important;
+}
+
+/* Fullscreen Zoom Modal */
+.zoom-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 10000000 !important;
+  display: none;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  opacity: 0;
+  transition: opacity 0.25s ease !important;
+  overflow: hidden !important;
+}
+
+.zoom-modal.active {
+  display: flex !important;
+  opacity: 1 !important;
+}
+
+.zoom-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(10, 32, 30, 0.94) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  z-index: 1 !important;
+}
+
+.zoom-toolbar {
+  position: relative !important;
+  z-index: 10 !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 20px !important;
+  gap: 12px !important;
+}
+
+.zoom-title-box {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(18, 63, 59, 0.85) !important;
+  border: 2px solid var(--mustard) !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  color: var(--cream) !important;
+  font-family: 'Courier New', monospace !important;
+  font-weight: 800 !important;
+  font-size: 0.88rem !important;
+  box-shadow: 2px 2px 0 var(--ink) !important;
+  max-width: 45vw !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.zoom-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(18, 63, 59, 0.92) !important;
+  border: 2px solid var(--mustard) !important;
+  border-radius: 30px !important;
+  padding: 6px 12px !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.45) !important;
+}
+
+.zoom-btn {
+  background: var(--cream) !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--ink) !important;
+  border-radius: 8px !important;
+  font-family: 'Arial Black', Impact, sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 900 !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 2px 2px 0 var(--ink) !important;
+  transition: transform 0.15s, background 0.15s !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  touch-action: manipulation !important;
+}
+
+.zoom-btn:hover {
+  transform: translate(-1px, -1px) !important;
+  background: var(--mustard) !important;
+}
+
+.zoom-btn:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: none !important;
+}
+
+.zoom-btn.reset-btn {
+  width: auto !important;
+  padding: 0 10px !important;
+  font-size: 0.85rem !important;
+  font-family: 'Courier New', monospace !important;
+  background: var(--teal) !important;
+  color: var(--cream) !important;
+  border-color: var(--mustard) !important;
+}
+
+.zoom-btn.close-btn {
+  background: var(--orange) !important;
+  color: #fff !important;
+  font-size: 1.25rem !important;
+}
+
+.zoom-level {
+  font-family: 'Courier New', monospace !important;
+  font-size: 0.95rem !important;
+  font-weight: 900 !important;
+  color: var(--cream) !important;
+  min-width: 52px !important;
+  text-align: center !important;
+  user-select: none !important;
+}
+
+.zoom-stage {
+  position: relative !important;
+  z-index: 5 !important;
+  flex: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  touch-action: none !important;
+  cursor: grab;
+}
+
+.zoom-stage.is-dragging {
+  cursor: grabbing !important;
+}
+
+#zoom-img {
+  max-width: 90vw !important;
+  max-height: 72vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border: 3px solid var(--ink) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 8px 8px 0 var(--mustard) !important;
+  background: #fff !important;
+  transform-origin: center center !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  pointer-events: auto !important;
+  will-change: transform !important;
+}
+
+.zoom-hint {
+  position: relative !important;
+  z-index: 10 !important;
+  background: rgba(18, 63, 59, 0.92) !important;
+  border: 2px solid var(--mustard) !important;
+  color: var(--cream) !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 14px !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+  pointer-events: none !important;
+  text-align: center !important;
+}
+
+@media (max-width: 600px) {
+  .zoom-toolbar {
+    padding: 10px 8px !important;
+  }
+  .zoom-title-box {
+    display: none !important;
+  }
+  .zoom-controls {
+    width: 100% !important;
+    justify-content: space-between !important;
+    padding: 6px 10px !important;
+  }
+  .zoom-btn {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1.05rem !important;
+  }
+  .zoom-btn.reset-btn {
+    padding: 0 8px !important;
+    font-size: 0.78rem !important;
+  }
+  .zoom-level {
+    font-size: 0.85rem !important;
+    min-width: 44px !important;
+  }
+  #zoom-img {
+    max-width: 94vw !important;
+    max-height: 68vh !important;
+    border-width: 2px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 5px 5px 0 var(--mustard) !important;
+  }
+  .zoom-hint {
+    font-size: 0.72rem !important;
+    padding: 4px 10px !important;
+    margin-bottom: 8px !important;
+    max-width: 94vw !important;
+  }
 }

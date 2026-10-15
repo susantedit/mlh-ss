@@ -10,9 +10,9 @@
 <div class="presentation-container">
 
 <div class="slide active">
- <div class="sticker m">A NEW GAMING PARADIGM ⚡</div>
+ <div class="sticker m">A NEW GAMING PARADIGM <svg class="icon icon-solid" viewBox="0 0 24 24" width="16" height="16"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
  <img src="banner.jpg" alt="Hacktoberfest Bhaktapur 2026" class="banner">
- <h1>Alliance <em>Arena</em></h1>
+ <h1 style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">Alliance <em>Arena</em></h1>
  <div class="tagline">Talk. Form Alliances. Survive.</div>
  
  <div class="paradigm-card">
@@ -38,11 +38,7 @@
    <div class="sticker">The Idea</div>
    <h1>What if negotiating with AI characters changed how a game plays out?</h1>
    <div class="sub">Words over reflexes. Conversation and strategy shape the fight.</div>
-   <div class="highlight-box" style="margin-top:14px;background:#fff;border-color:var(--orange)">
-     <strong>🔫 Traditional Games:</strong> "Hamare paas fast reflexes hain, aimbot hai, gun skills hain!"<br>
-     <strong>🔥 Alliance Arena:</strong> "Hamare paas Gemma AI hai. Hum goli se nahi, baaton se poori arena palat dete hain!"
-   </div>
-   <p style="margin-top:12px;font-weight:700">Me pitching this to the judges, fully confident:</p>
+   <p style="margin-top:14px;font-weight:700">Me pitching this to the judges, fully confident:</p>
   </div>
   <img src="meme-pro.jpg" alt="acting professionally while I have no idea what I'm doing" class="meme tall">
  </div>
@@ -50,45 +46,34 @@
 
 <div class="slide">
  <h2>The Gameplay Loop</h2>
- <div class="highlight-box" style="margin-bottom:14px;background:#fff;border-color:var(--mustard)">
-   <strong>🤝 TALK Phase (Control, Uday, Control!):</strong> "Bas 2 minute tameez se baat karni hai, inko dost banana hai."<br>
-   <strong>⚔️ BATTLE Phase:</strong> [Phase changes] <em>"Ab ghode ki naal ko aamlet bana ke khilaunga!"</em> 🔨🔥
- </div>
  <div class="flow">
   <div class="card"><div class="step">1 / TALK</div><h3>Explore &amp; negotiate</h3><p>First-person movement, chat with NPCs, pitch alliances.</p></div><div class="arrow">→</div>
   <div class="card"><div class="step">2 / LOCK</div><h3>Alliances lock</h3><p>Phase shifts. Your squad is set.</p></div><div class="arrow">→</div>
   <div class="card dark"><div class="step">3 / BATTLE</div><h3>Fight to survive</h3><p>NPCs attack, defend, move, ally or betray.</p></div><div class="arrow">→</div>
   <div class="card dark"><div class="step">4 / WINNER</div><h3>Last one standing</h3><p>Or the battle timer runs out.</p></div>
  </div>
- <div class="keys"><span>WASD move</span><span>Mouse look</span><span>Shift sprint</span><span>Click attack</span></div>
- <p class="muted">Arena landmarks: Fountain · Ruins · Tower · Grove · Docks</p>
+  <div class="keys"><span>WASD move</span><span>Mouse look</span><span>Shift sprint</span><span>Click attack</span></div>
+  <p class="muted">Arena landmarks: Fountain · Ruins · Tower · Grove · Docks</p>
 </div>
 
 <div class="slide">
  <h2>Meet the AI Squad</h2>
- <div class="highlight-box" style="margin-bottom:14px;background:#fff;border-color:var(--purple)">
-   🕵️‍♂️ <strong>ACP Pradyuman &amp; Daya:</strong> "Kuch toh gadbad hai, Daya... Yeh Vera itne pyaar se baat karke peeth me chhuri kyu ghop rahi hai?!" 🔪
- </div>
  <div class="grid g3">
-  <div class="card nova"><div class="av">N</div><h3>Nova</h3><div class="role">Bold commander</div><p>Gives zero damn. Leads from the front and rallies others.</p><div class="vibe">main character energy</div></div>
-  <div class="card rex"><div class="av">R</div><h3>Rex</h3><div class="role">Ruthless tactician</div><p>"Iska toh game bajana padega!" Weighs every deal by self-gain.</p><div class="vibe">trust issues, but strategic</div></div>
-  <div class="card vera"><div class="av">V</div><h3>Vera</h3><div class="role">Polite diplomat</div><p>Talks sweet in TALK phase, betrays in BATTLE phase.</p><div class="vibe">sweet. suspiciously sweet.</div></div>
+  <div class="card nova"><div class="av">N</div><h3>Nova</h3><div class="role">Bold commander</div><p>Leads from the front and rallies others to her side.</p><div class="vibe">main character energy</div></div>
+  <div class="card rex"><div class="av">R</div><h3>Rex</h3><div class="role">Ruthless tactician</div><p>Weighs every deal by what it gains him.</p><div class="vibe">trust issues, but strategic</div></div>
+  <div class="card vera"><div class="av">V</div><h3>Vera</h3><div class="role">Polite but cunning diplomat</div><p>Courteous words, careful motives.</p><div class="vibe">sweet. suspiciously sweet.</div></div>
  </div>
 </div>
 
 <div class="slide">
  <div class="sticker m">The Project We Are Building</div>
  <h2 style="margin-bottom:14px">AI advises. The browser simulates.</h2>
- <div class="highlight-box" style="margin-bottom:14px;background:#fff;border-color:var(--orange)">
-   🏎️💨 <strong>Gamers:</strong> "Bhai, AI server down hua toh game atak jayega!" 😭<br>
-   🔥 <strong>Alliance Arena:</strong> "Wah beta wah! Tumne toh mauj kardi! Cloud AI fail bhi hua toh local physics se game chalega bina kisi lag ke!"
- </div>
  <div class="layers">
   <div class="card"><span class="tag">FRONT END</span><h3>Three.js browser game</h3><p>HTML, CSS and JavaScript. Real-time 3D arena, first-person controls and five landmarks.</p></div>
   <div class="card" style="border-color:var(--orange);box-shadow:6px 6px 0 var(--orange)"><span class="tag" style="background:var(--orange);color:#fff">AI MODEL USED</span><h3>Gemma 4 12B</h3><p><strong>Gemma 4 12B</strong> (cloud-hosted via Ollama / Cloudflare tunnel) generates strategic directives, personality dialogue, and tactical decisions for all NPCs.</p></div>
   <div class="card dark"><span class="tag">LOCAL</span><h3>Local simulation</h3><p>Movement, pathfinding, collisions, combat and rules run in the browser, so it stays responsive.</p></div>
  </div>
- <div class="highlight-box">🤖 <strong>AI Model Used: Gemma 4 12B</strong> — Pure high-level strategic reasoning. Movement &amp; combat physics stay 100% local!</div>
+ <div class="highlight-box"><svg class="icon" viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> <strong>AI Model Used: Gemma 4 12B</strong> — Pure high-level strategic reasoning. Movement &amp; combat physics stay 100% local!</div>
  <p class="muted">Model: Gemma 4 (12B parameters) · Fallback: Built-in local heuristic engine if cloud tunnel is offline.</p>
 </div>
 
@@ -115,11 +100,11 @@
    </div>
    <div class="card dark">
     <div class="step" style="color:var(--orange);font-size:.95rem">REX (TACTICIAN)</div>
-    <p style="font-size:1.15rem;font-weight:700">⚔️ *Joins the enemy team immediately.*</p>
+    <p style="font-size:1.15rem;font-weight:700"><svg class="icon" viewBox="0 0 24 24" width="18" height="18"><polygon points="14.5 17.5 3 6 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/></svg> *Joins the enemy team immediately.*</p>
    </div>
    <div class="card" style="border-color:var(--orange)">
     <div class="step" style="color:var(--orange);font-size:.95rem">YOU (FIRST-PERSON PLAYER)</div>
-    <p style="font-size:1.25rem;font-weight:900;color:var(--orange)">“Aree bhai bhai bhai! 💀”</p>
+    <p style="font-size:1.25rem;font-weight:900;color:var(--orange)">“Aree bhai bhai bhai!”</p>
    </div>
   </div>
   <div class="meme-frame">
@@ -134,7 +119,7 @@
   <div class="txt">
    <div><div class="sticker m">Classic Dev Moment</div></div>
    <h2>Developer During the Live Demo</h2>
-   <div class="caption">“Mere laptop pe toh chal raha tha!” 😭</div>
+   <div class="caption">“Mere laptop pe toh chal raha tha!”</div>
    <div class="card" style="border-color:#059669">
     <div class="step" style="color:#059669;font-size:.9rem">CONFIDENCE BEFORE DEMO (100%)</div>
     <p style="font-size:1.05rem;line-height:1.4">Fully confident: 3D arena running, Gemma 4 12B thinking, victory in sight.</p>
@@ -166,7 +151,7 @@
    </div>
    <div class="card" style="border-color:var(--orange)">
     <div class="step" style="color:var(--orange);font-size:.95rem">AFTER BETRAYAL</div>
-    <p style="font-size:1.2rem;font-weight:900;color:var(--orange)"><strong>You:</strong> “Badla lunga!” 💀</p>
+    <p style="font-size:1.2rem;font-weight:900;color:var(--orange)"><strong>You:</strong> “Badla lunga!”</p>
    </div>
   </div>
   <div class="meme-frame">
@@ -206,7 +191,7 @@
  <div class="meme-frame" style="margin:4px 0 10px">
   <img src="4.png" alt="Who would you trust" class="meme-img" style="max-height:min(30vh,220px)">
  </div>
- <div class="highlight-box" style="margin-top:0;text-align:center;width:100%;max-width:860px">🎭 Betrayal twist revealed live during the gameplay demo!</div>
+ <div class="highlight-box" style="margin-top:0;text-align:center;width:100%;max-width:860px"><svg class="icon" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg> Betrayal twist revealed live during the gameplay demo!</div>
 </div>
 
 <div class="slide">
@@ -239,45 +224,45 @@
 </div>
 
 <div class="slide">
- <div class="sticker m">THE VERDICT ⚖️</div>
- <div class="big-q" style="font-size:clamp(1.8rem,4.2vw,3.2rem);margin-bottom:6px">Am I going to win? 🏆</div>
+ <div class="sticker m">THE VERDICT <svg class="icon" viewBox="0 0 24 24" width="16" height="16"><line x1="12" y1="3" x2="12" y2="21"/><polyline points="3 8 12 5 21 8"/><path d="M7 13a4 4 0 0 0 0-8 4 4 0 0 0 0 8Z"/><path d="M17 13a4 4 0 0 0 0-8 4 4 0 0 0 0 8Z"/><line x1="7" y1="21" x2="17" y2="21"/></svg></div>
+ <div class="big-q" style="font-size:clamp(1.8rem,4.2vw,3.2rem);margin-bottom:6px">Am I going to win? <svg class="icon icon-solid" viewBox="0 0 24 24" width="30" height="30" style="color:var(--mustard)"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
  <div class="sub" style="margin-bottom:12px;font-size:1.15rem">Select who is voting:</div>
  <div class="win-box">
   <div class="win-btns">
-   <button type="button" class="win-btn judge-yes" id="btn-judge-yes">JUDGE: YES 🥇</button>
-   <button type="button" class="win-btn judge-no" id="btn-judge-no">JUDGE: NO 😭</button>
-   <button type="button" class="win-btn aud-yes" id="btn-aud-yes">AUDIENCE: YES 😎</button>
-   <button type="button" class="win-btn aud-no" id="btn-aud-no">AUDIENCE: NO 🤫</button>
+   <button type="button" class="win-btn judge-yes" id="btn-judge-yes">JUDGE: YES <svg class="icon" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></button>
+   <button type="button" class="win-btn judge-no" id="btn-judge-no">JUDGE: NO <svg class="icon" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></button>
+   <button type="button" class="win-btn aud-yes" id="btn-aud-yes">AUDIENCE: YES <svg class="icon" viewBox="0 0 24 24" width="18" height="18"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg></button>
+   <button type="button" class="win-btn aud-no" id="btn-aud-no">AUDIENCE: NO <svg class="icon" viewBox="0 0 24 24" width="18" height="18"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"/></svg></button>
   </div>
   <!-- 1. Judge YES: image.png -->
-  <div id="win-placeholder" class="caption" style="font-size:1.15rem;color:var(--teal);margin-top:20px;font-weight:800">👇 Click a button above to reveal the verdict!</div>
+  <div id="win-placeholder" class="caption" style="font-size:1.15rem;color:var(--teal);margin-top:20px;font-weight:800"><svg class="icon" viewBox="0 0 24 24" width="20" height="20"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg> Click a button above to reveal the verdict!</div>
    <div id="res-judge-yes" class="win-display" style="display:none">
    <img src="image.png" alt="Judge says YES" class="win-img">
-   <div class="highlight-box" style="margin-top:10px;text-align:center">🎉 Respect to the judges! 1st place champion energy locked in. Dhanyabad!</div>
+   <div class="highlight-box" style="margin-top:10px;text-align:center"><svg class="icon icon-solid" viewBox="0 0 24 24" width="18" height="18" style="color:var(--mustard)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Respect to the judges! 1st place champion energy locked in. Dhanyabad!</div>
   </div>
   <!-- 2. Judge NO: Video-52417.mp4 -->
   <div id="res-judge-no" class="win-display" style="display:none">
-   <div class="caption" style="font-size:1.2rem;margin-bottom:8px;color:var(--orange)">Judges said NO: Moye Moye moment 💀</div>
+   <div class="caption" style="font-size:1.2rem;margin-bottom:8px;color:var(--orange)">Judges said NO: Moye Moye moment</div>
    <video id="vid-judge-no" src="Video-52417.mp4" controls playsinline class="win-video" preload="auto"></video>
    <div class="sub" style="margin-top:6px;font-size:1.05rem;color:var(--teal)">Press play to witness the defeat...</div>
   </div>
   <!-- 3. Audience YES: image.png -->
   <div id="res-aud-yes" class="win-display" style="display:none">
    <img src="image.png" alt="Audience says YES" class="win-img">
-   <div class="highlight-box" style="margin-top:10px;text-align:center">🎉 Audience says YES! Main character energy. Full support unlocked!</div>
+   <div class="highlight-box" style="margin-top:10px;text-align:center"><svg class="icon icon-solid" viewBox="0 0 24 24" width="18" height="18" style="color:var(--mustard)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Audience says YES! Main character energy. Full support unlocked!</div>
   </div>
   <!-- 4. Audience NO: wm_Chup_Kar_Be_Kutte_Meme_Download.mp4 -->
   <div id="res-aud-no" class="win-display" style="display:none">
    <div class="caption" style="font-size:1.2rem;margin-bottom:8px;color:var(--orange)">For the audience saying NO... special reply for you:</div>
    <video id="vid-aud-no" src="wm_Chup_Kar_Be_Kutte_Meme_Download.mp4" controls playsinline class="win-video" preload="auto"></video>
-   <div class="sub" style="margin-top:6px;font-size:1.05rem;color:var(--teal)">🤫 “Chup Kar…” — Play video!</div>
+   <div class="sub" style="margin-top:6px;font-size:1.05rem;color:var(--teal)"><svg class="icon" viewBox="0 0 24 24" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg> “Chup Kar…” — Play video!</div>
   </div>
  </div>
 </div>
 
 <div class="slide">
- <div class="sticker m">FINAL PITCH &middot; OPPORTUNITY 💼</div>
- <h2 style="margin-bottom:6px">My team doesn't want an internship... <em>BUT I DO!</em> 🔥</h2>
+ <div class="sticker m">FINAL PITCH &middot; OPPORTUNITY <svg class="icon" viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+ <h2 style="margin-bottom:6px">My team doesn't want an internship... <em>BUT I DO!</em> <svg class="icon" viewBox="0 0 24 24" width="24" height="24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></h2>
  <div class="sub" style="margin-bottom:12px;font-size:1.15rem">Full-Stack &amp; AI Builder &middot; Ready for Internship &amp; Engineering Roles</div>
  
  <div class="intern-split">
@@ -285,24 +270,24 @@
    <div class="photo-pair">
     <div class="photo-box">
      <img src="hero_center.png" alt="Susant Luitel" class="hero-img">
-     <div class="photo-tag">Susant Luitel 🇳🇵</div>
+     <div class="photo-tag"><svg class="icon" viewBox="0 0 24 24" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Susant Luitel (Nepal)</div>
     </div>
     <div class="photo-box">
      <img src="6.png" alt="Meme: Ready for internship" class="meme-small">
-     <div class="photo-tag">The Internship Hustle 🚀</div>
+     <div class="photo-tag"><svg class="icon" viewBox="0 0 24 24" width="14" height="14"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> The Internship Hustle</div>
     </div>
    </div>
    <div class="highlight-box" style="margin-top:10px;font-size:0.92rem;padding:9px 14px">
-    💡 "While the squad takes a break, I am ready to join your engineering team, build LLM pipelines, and ship production code!"
+    <svg class="icon" viewBox="0 0 24 24" width="16" height="16"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg> "While the squad takes a break, I am ready to join your engineering team, build LLM pipelines, and ship production code!"
    </div>
   </div>
 
   <div class="intern-right">
    <div class="qr-container">
-    <div class="qr-label">📱 SCAN TO CONNECT / HIRE ME</div>
+    <div class="qr-label"><svg class="icon" viewBox="0 0 24 24" width="16" height="16"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> SCAN TO CONNECT / HIRE ME</div>
     <div class="qr-tabs">
-     <button type="button" class="qr-tab active" data-url="https://kantarajluitel.com" data-title="Personal Website (kantarajluitel.com)">🌐 WEBSITE</button>
-     <button type="button" class="qr-tab" data-url="links.html" data-title="All Social Media Hub">🌟 ALL MEDIAS</button>
+     <button type="button" class="qr-tab active" data-url="https://kantarajluitel.com" data-title="Personal Website (kantarajluitel.com)"><svg class="icon" viewBox="0 0 24 24" width="13" height="13"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> WEBSITE</button>
+     <button type="button" class="qr-tab" data-url="links.html" data-title="All Social Media Hub"><svg class="icon icon-solid" viewBox="0 0 24 24" width="13" height="13"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ALL MEDIAS</button>
      <button type="button" class="qr-tab" data-url="https://linkedin.com/in/kantaraj-luitel" data-title="LinkedIn Profile">LinkedIn</button>
      <button type="button" class="qr-tab" data-url="https://github.com/susantedit" data-title="GitHub Profile">GitHub</button>
      <button type="button" class="qr-tab" data-url="https://wa.me/9779708838261" data-title="WhatsApp Chat">WhatsApp</button>
@@ -311,7 +296,7 @@
     <div class="qr-frame">
      <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=links.html&margin=4" alt="QR Code" class="qr-img">
      <div id="qr-desc" class="qr-desc">Scanning opens: <b>All Social Media &amp; Profiles Hub</b></div>
-     <a href="links.html" target="_blank" style="margin-top:6px;font-size:0.8rem;padding:5px 12px;background:var(--teal);color:var(--cream);border:2px solid var(--ink);border-radius:6px;text-decoration:none;font-weight:800;display:inline-block">🔗 Open All Media Hub Directly</a>
+     <a href="links.html" target="_blank" style="margin-top:6px;font-size:0.8rem;padding:5px 12px;background:var(--teal);color:var(--cream);border:2px solid var(--ink);border-radius:6px;text-decoration:none;font-weight:800;display:inline-flex;align-items:center;gap:6px"><svg class="icon" viewBox="0 0 24 24" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Open All Media Hub Directly</a>
     </div>
    </div>
 
@@ -343,10 +328,33 @@
 </audio>
 <div class="hint">← → / Space to navigate · F for fullscreen</div>
 <div class="controls">
- <button class="nav-btn music-btn" id="music-btn" title="Toggle background music">🎵</button>
+ <button class="nav-btn music-btn" id="music-btn" title="Toggle background music"><svg class="icon" viewBox="0 0 24 24" width="20" height="20"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></button>
  <button class="nav-btn" id="prev-btn">←</button>
- <div class="slide-number" id="slide-num">1 / 6</div>
+ <div class="slide-number" id="slide-num">1 / 16</div>
  <button class="nav-btn" id="next-btn">→</button>
 </div>
+
+<!-- Fullscreen Photo Zoom Modal for Mobile & Desktop -->
+<div id="photo-zoom-modal" class="zoom-modal" aria-hidden="true" role="dialog" aria-label="Photo zoom viewer">
+  <div class="zoom-backdrop" id="zoom-backdrop"></div>
+  <div class="zoom-toolbar">
+    <div class="zoom-title-box">
+      <span class="zoom-icon"><svg class="icon" viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      <span class="zoom-title" id="zoom-title">Photo Zoom</span>
+    </div>
+    <div class="zoom-controls">
+      <button type="button" class="zoom-btn" id="zoom-out-btn" title="Zoom Out (-)" aria-label="Zoom Out">−</button>
+      <span class="zoom-level" id="zoom-level">100%</span>
+      <button type="button" class="zoom-btn" id="zoom-in-btn" title="Zoom In (+)" aria-label="Zoom In">+</button>
+      <button type="button" class="zoom-btn reset-btn" id="zoom-reset-btn" title="Reset (100%)" aria-label="Reset Zoom">↺ Fit</button>
+      <button type="button" class="zoom-btn close-btn" id="zoom-close-btn" title="Close (Esc)" aria-label="Close Zoom">✕</button>
+    </div>
+  </div>
+  <div class="zoom-stage" id="zoom-stage">
+    <img id="zoom-img" src="" alt="Zoomed view" draggable="false">
+  </div>
+  <div class="zoom-hint"><svg class="icon" viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Pinch or +/- to zoom &middot; Drag to pan &middot; Double-tap to toggle &middot; Tap ✕ to close</div>
+</div>
+
 <script src="script.js"></script>
 </body></html>
