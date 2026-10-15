@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<script>
+if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+  location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+}
+</script>
 <title>Alliance Arena | Hacktoberfest Bhaktapur 2026</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -39,6 +45,17 @@
    <h1>What if negotiating with AI characters changed how a game plays out?</h1>
    <div class="sub">Words over reflexes. Conversation and strategy shape the fight.</div>
    <p style="margin-top:14px;font-weight:700">Me pitching this to the judges, fully confident:</p>
+   <div class="banter-box">
+    <button type="button" class="banter-btn" onclick="toggleBanter(this)" aria-expanded="false">
+     <svg class="icon" viewBox="0 0 24 24" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+     <span>Pitch Banter Dialogue</span>
+     <span class="banter-arrow">&#9660;</span>
+    </button>
+    <div class="banter-content">
+     <div class="banter-line"><strong>Traditional Games:</strong> “Hamare paas fast reflexes hain, aimbot hai, gun skills hain!”</div>
+     <div class="banter-line"><strong>Alliance Arena:</strong> “Hamare paas Gemma AI hai. Hum goli se nahi, baaton se poori arena palat dete hain!”</div>
+    </div>
+   </div>
   </div>
   <img src="meme-pro.jpg" alt="acting professionally while I have no idea what I'm doing" class="meme tall">
  </div>
@@ -53,6 +70,17 @@
   <div class="card dark"><div class="step">4 / WINNER</div><h3>Last one standing</h3><p>Or the battle timer runs out.</p></div>
  </div>
   <div class="keys"><span>WASD move</span><span>Mouse look</span><span>Shift sprint</span><span>Click attack</span></div>
+  <div class="banter-box" style="margin-top:12px">
+   <button type="button" class="banter-btn" onclick="toggleBanter(this)" aria-expanded="false">
+    <svg class="icon" viewBox="0 0 24 24" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span>Phase Shift Dialogue</span>
+    <span class="banter-arrow">&#9660;</span>
+   </button>
+   <div class="banter-content">
+    <div class="banter-line"><strong>TALK Phase (Control, Uday, Control!):</strong> “Bas 2 minute tameez se baat karni hai, inko dost banana hai.”</div>
+    <div class="banter-line"><strong>BATTLE Phase:</strong> [Phase changes] “Ab ghode ki naal ko aamlet bana ke khilaunga!”</div>
+   </div>
+  </div>
   <p class="muted">Arena landmarks: Fountain · Ruins · Tower · Grove · Docks</p>
 </div>
 
@@ -62,6 +90,16 @@
   <div class="card nova"><div class="av">N</div><h3>Nova</h3><div class="role">Bold commander</div><p>Leads from the front and rallies others to her side.</p><div class="vibe">main character energy</div></div>
   <div class="card rex"><div class="av">R</div><h3>Rex</h3><div class="role">Ruthless tactician</div><p>Weighs every deal by what it gains him.</p><div class="vibe">trust issues, but strategic</div></div>
   <div class="card vera"><div class="av">V</div><h3>Vera</h3><div class="role">Polite but cunning diplomat</div><p>Courteous words, careful motives.</p><div class="vibe">sweet. suspiciously sweet.</div></div>
+ </div>
+ <div class="banter-box" style="margin-top:14px">
+  <button type="button" class="banter-btn" onclick="toggleBanter(this)" aria-expanded="false">
+   <svg class="icon" viewBox="0 0 24 24" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+   <span>CID Dialogue / Vera Suspicion</span>
+   <span class="banter-arrow">&#9660;</span>
+  </button>
+  <div class="banter-content">
+   <div class="banter-line"><strong>ACP Pradyuman &amp; Daya:</strong> “Kuch toh gadbad hai, Daya... Yeh Vera itne pyaar se baat karke peeth me chhuri kyu ghop rahi hai?!”</div>
+  </div>
  </div>
 </div>
 
@@ -74,6 +112,17 @@
   <div class="card dark"><span class="tag">LOCAL</span><h3>Local simulation</h3><p>Movement, pathfinding, collisions, combat and rules run in the browser, so it stays responsive.</p></div>
  </div>
  <div class="highlight-box"><svg class="icon" viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> <strong>AI Model Used: Gemma 4 12B</strong> — Pure high-level strategic reasoning. Movement &amp; combat physics stay 100% local!</div>
+ <div class="banter-box" style="margin-top:12px">
+  <button type="button" class="banter-btn" onclick="toggleBanter(this)" aria-expanded="false">
+   <svg class="icon" viewBox="0 0 24 24" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+   <span>Cloud Fallback Dialogue</span>
+   <span class="banter-arrow">&#9660;</span>
+  </button>
+  <div class="banter-content">
+   <div class="banter-line"><strong>Gamers:</strong> “Bhai, AI server down hua toh game atak jayega!”</div>
+   <div class="banter-line"><strong>Alliance Arena:</strong> “Wah beta wah! Tumne toh mauj kardi! Cloud AI fail bhi hua toh local physics se game chalega bina kisi lag ke!”</div>
+  </div>
+ </div>
  <p class="muted">Model: Gemma 4 (12B parameters) · Fallback: Built-in local heuristic engine if cloud tunnel is offline.</p>
 </div>
 
@@ -161,37 +210,37 @@
 </div>
 
 <!-- Slide 10 -->
-<div class="slide">
+<div class="slide slide-vote">
  <div><div class="sticker m">Audience Vote</div></div>
  <h2>Who Would You Trust?</h2>
- <div class="sub" style="margin-bottom:12px">Vote for the character you trust most before gameplay:</div>
- <div class="grid g3" style="margin-bottom:12px;width:100%;max-width:960px">
-  <div class="card nova">
+ <div class="sub vote-sub">Vote for the character you trust most before gameplay:</div>
+ <div class="vote-grid">
+  <div class="card nova vote-card" onclick="castVote('nova')">
    <div class="av">N</div>
    <h3>Nova</h3>
    <div class="role">Commander</div>
-   <p style="font-size:.95rem">“Honor and strength.”</p>
-   <div class="vibe">Trustworthy or bait?</div>
+   <p class="quote">“Honor and strength.”</p>
+   <div class="vote-btn-wrap"><button type="button" class="vote-action-btn" id="vote-btn-nova"><svg class="icon" viewBox="0 0 24 24" width="14" height="14"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg> Vote Nova <span class="vote-count" id="count-nova">0</span></button></div>
   </div>
-  <div class="card rex">
+  <div class="card rex vote-card" onclick="castVote('rex')">
    <div class="av">R</div>
    <h3>Rex</h3>
    <div class="role">Tactician</div>
-   <p style="font-size:.95rem">“Power is everything.”</p>
-   <div class="vibe">Will switch sides in battle</div>
+   <p class="quote">“Power is everything.”</p>
+   <div class="vote-btn-wrap"><button type="button" class="vote-action-btn" id="vote-btn-rex"><svg class="icon" viewBox="0 0 24 24" width="14" height="14"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg> Vote Rex <span class="vote-count" id="count-rex">0</span></button></div>
   </div>
-  <div class="card vera">
+  <div class="card vera vote-card" onclick="castVote('vera')">
    <div class="av">V</div>
    <h3>Vera</h3>
    <div class="role">Diplomat</div>
-   <p style="font-size:.95rem">“Let's negotiate.”</p>
-   <div class="vibe">Polite with hidden daggers</div>
+   <p class="quote">“Let's negotiate.”</p>
+   <div class="vote-btn-wrap"><button type="button" class="vote-action-btn" id="vote-btn-vera"><svg class="icon" viewBox="0 0 24 24" width="14" height="14"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg> Vote Vera <span class="vote-count" id="count-vera">0</span></button></div>
   </div>
  </div>
- <div class="meme-frame" style="margin:4px 0 10px">
-  <img src="4.png" alt="Who would you trust" class="meme-img" style="max-height:min(30vh,220px)">
+ <div class="meme-frame vote-meme-frame">
+  <img src="4.png" alt="Who would you trust" class="meme-img vote-img">
  </div>
- <div class="highlight-box" style="margin-top:0;text-align:center;width:100%;max-width:860px"><svg class="icon" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg> Betrayal twist revealed live during the gameplay demo!</div>
+ <div class="highlight-box vote-box"><svg class="icon" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg> Betrayal twist revealed live during the gameplay demo!</div>
 </div>
 
 <div class="slide">

@@ -613,7 +613,37 @@ if (zoomStage) {
   }, { passive: true });
 }
 
-// Attach Zoom Trigger & Badges to All Slide Images
+/* Toggle Meme Banter Dialogue */
+window.toggleBanter = function(btn) {
+  if (!btn) return;
+  const content = btn.nextElementSibling;
+  if (!content) return;
+  const isOpen = content.classList.contains('open');
+  if (isOpen) {
+    content.classList.remove('open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  } else {
+    content.classList.add('open');
+    btn.classList.add('active');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+};
+
+/* Audience Vote Interactive Handler (Slide 10) */
+const audienceVotes = { nova: 0, rex: 0, vera: 0 };
+window.castVote = function(character) {
+  if (audienceVotes[character] === undefined) return;
+  audienceVotes[character]++;
+  const countEl = document.getElementById(`count-${character}`);
+  if (countEl) countEl.textContent = audienceVotes[character];
+  const btn = document.getElementById(`vote-btn-${character}`);
+  if (btn) btn.classList.add('voted');
+  const card = btn ? btn.closest('.vote-card') : null;
+  if (card) card.classList.add('voted');
+};
+
+// Attach Zoom Trigger & Badges cleanly to All Slide Images
 function initPhotoZoomables() {
   const candidateImages = document.querySelectorAll('.slide img:not(.badges-grid img)');
 
@@ -629,41 +659,30 @@ function initPhotoZoomables() {
       openZoom(img);
     });
 
-    // Ensure parent allows badge positioning or wrap image
     const parent = img.parentElement;
-    let badgeContainer = parent;
+    let container = parent;
 
-    const hasRelativeParent = parent && (
-      parent.classList.contains('meme-frame') ||
-      parent.classList.contains('memewrap') ||
-      parent.classList.contains('photo-box') ||
-      parent.classList.contains('qr-frame') ||
-      parent.classList.contains('photo-zoom-wrap')
-    );
-
-    if (!hasRelativeParent) {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'photo-zoom-wrap';
-      parent.insertBefore(wrapper, img);
-      wrapper.appendChild(img);
-      badgeContainer = wrapper;
-    } else {
-      parent.style.position = 'relative';
+    // Always ensure the image is cleanly enclosed in its own photo-zoom-container
+    if (!parent || !parent.classList.contains('photo-zoom-container')) {
+      container = document.createElement('div');
+      container.className = 'photo-zoom-container';
+      parent.insertBefore(container, img);
+      container.appendChild(img);
     }
 
-    // Add visible Zoom badge button on the photo
-    const badge = document.createElement('button');
-    badge.type = 'button';
-    badge.className = 'photo-zoom-badge';
-    badge.innerHTML = '<svg class="icon" viewBox="0 0 24 24" width="13" height="13"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Zoom';
-    badge.title = 'Tap to zoom in/out';
-    badge.setAttribute('aria-label', 'Zoom this photo');
-    badge.onclick = (e) => {
+    // Add visible Zoom button attached directly to the bottom-right of the photo
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'photo-zoom-btn';
+    btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" width="13" height="13"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Zoom';
+    btn.title = 'Tap to zoom in/out';
+    btn.setAttribute('aria-label', 'Zoom this photo');
+    btn.onclick = (e) => {
       e.stopPropagation();
       openZoom(img);
     };
 
-    badgeContainer.appendChild(badge);
+    container.appendChild(btn);
   });
 }
 
@@ -673,3 +692,4 @@ if (document.readyState === 'loading') {
 } else {
   initPhotoZoomables();
 }
+
